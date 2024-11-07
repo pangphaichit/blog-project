@@ -8,8 +8,12 @@
   ],
   "routes": [
     {
+      "src": "/profiles",
+      "dest": "/app.mjs"
+    },
+    {
       "src": "/(.*)",
-      "dest": "app.mjs"
+      "dest": "/app.mjs" 
     }
   ]
 }
