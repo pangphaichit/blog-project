@@ -7,15 +7,20 @@ const port = process.env.PORT || 4001;
 app.use(cors());
 app.use(express.json());
 
+
+const userProfile = {
+  data: {
+    name: "john",
+    age: 20
+  }
+};
+
+
 app.get("/profiles", (req, res) => {
-    return res.json({
-      data: {
-        name: "john",
-        age: 20,
-      },
-    });
-  });
+  return res.status(200).json(userProfile); 
+});
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
+
