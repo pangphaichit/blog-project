@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { pool } from "./utils/db.mjs";
+import validatePostData from "./middlewares/postValidation.mjs"; 
 
 const app = express();
 const port = process.env.PORT || 4001;
@@ -13,7 +14,7 @@ app.get("/", (req, res) => {
   res.send("Hello TechUp!");
 });
 
-app.post("/posts", async (req, res) => {
+app.post("/posts", validatePostData, async (req, res) => {
 
   const newPost = req.body;
 
@@ -63,7 +64,7 @@ app.get("/posts/:postId", async (req, res) => {
   }
 });
 
-app.put("/posts/:postId", async (req, res) => {
+app.put("/posts/:postId", validatePostData, async (req, res) => {
   const postId = req.params.postId;  
   const { title, image, category_id, description, content, status_id } = req.body;  
 
